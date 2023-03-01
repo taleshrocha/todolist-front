@@ -1,3 +1,4 @@
+import Folder from "@/components/Folder";
 import Task from "@/components/Task";
 import Head from "next/head";
 
@@ -17,7 +18,11 @@ export default function Home() {
         "
       >
         <div className="border-2 border-gray-200 rounded-md h-max w-full">
-          <Task/>
+          <Folder>
+            <Task />
+            <Task />
+            <Task />
+          </Folder>
         </div>
       </main>
     </>
