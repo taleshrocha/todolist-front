@@ -13,11 +13,13 @@ export default function Home() {
       </Head>
       <main
         className="
-          flex
-          bg-gray-900 w-full min-h-screen h-full p-20
+          flex flex-col items-center 
+          bg-gray-900 w-full min-h-screen h-full px-72 py-12 space-y-8
         "
       >
-        <div className="border-2 border-gray-200 rounded-md h-max w-full">
+        <h1 className="text-gray-200 font-bold text-4xl">To Do List</h1>
+        <p className="text-gray-200 text-xl">+ Add a Task</p>
+        <div className="rounded-md h-max w-full">
           <Folder>
             <Task />
             <Task />
