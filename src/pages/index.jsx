@@ -1,4 +1,5 @@
 import Folder from "@/components/Folder";
+import Header from "@/components/Header";
 import Task from "@/components/Task";
 import Head from "next/head";
 
@@ -14,10 +15,10 @@ export default function Home() {
       <main
         className="
           flex flex-col items-center 
-          bg-gray-900 w-full min-h-screen h-full px-72 py-12 space-y-8
+          bg-neutral-900 w-full min-h-screen h-full
         "
       >
-        <h1 className="text-gray-200 font-bold text-4xl">To Do List</h1>
+        <Header/>
         <p className="text-gray-200 text-xl">+ Add a Task</p>
         <div className="rounded-md h-max w-full">
           <Folder>
