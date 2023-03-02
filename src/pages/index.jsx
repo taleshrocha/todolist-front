@@ -2,6 +2,12 @@ import Folder from "@/components/Folder";
 import Header from "@/components/Header";
 import Task from "@/components/Task";
 import Head from "next/head";
+import IconButton from "@/components/IconButton";
+import {
+  AiOutlineEllipsis as EllipsisIcon,
+  AiOutlinePlus as PlusIcon,
+} from "react-icons/ai";
+import { BiMessage as MessageIcon } from "react-icons/bi";
 
 export default function Home() {
   return (
@@ -18,14 +24,28 @@ export default function Home() {
           bg-neutral-900 w-full min-h-screen h-full
         "
       >
-        <Header/>
-        <p className="text-gray-200 text-xl">+ Add a Task</p>
-        <div className="rounded-md h-max w-full">
-          <Folder>
-            <Task />
-            <Task />
-            <Task />
-          </Folder>
+        <Header />
+        <div className="w-full text-neutral-200 px-12 pt-8 space-y-4">
+          <div className="flex items-center justify-start text-xl">
+            <p className="font-bold flex-1">Inbox</p>
+            <IconButton Icon={MessageIcon} />
+            <IconButton Icon={EllipsisIcon} />
+          </div>
+
+          <button className="group flex items-center justify-start space-x-4">
+            <div className="flex items-center justify-center rounded-full w-4 h-4
+              text-red-600 group-hover:bg-red-600 group-hover:text-white">
+              <p className="text-2xl font-light">+</p>
+            </div>
+            <p className="text-gray-200 group-hover:text-red-600">Add a Task</p>
+          </button>
+          <div className="rounded-md h-max w-full">
+            <Folder>
+              <Task />
+              <Task />
+              <Task />
+            </Folder>
+          </div>
         </div>
       </main>
     </>
