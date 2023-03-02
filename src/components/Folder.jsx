@@ -1,20 +1,31 @@
 import { Children, useState } from "react";
+import {
+  AiOutlineEllipsis as EllipsisIcon,
+  AiOutlineRight as RightIcon,
+  AiOutlineDown as DownIcon,
+} from "react-icons/ai";
+import IconButton from "./IconButton";
 
 export default function Folder({ children }) {
   const [isOpen, setIsOpen] = useState(false);
-  const num = Children.count(children);
+  const taskNum = Children.count(children);
+
   return (
-    <div className="flex flex-col items-start justify-start space-x-2 w-full p-4 text-gray-200">
-      <div className="flex w-full items-center space-x-2">
-        <button
-          className={` font-semibold items-center`}
+    <div className="flex flex-col">
+      <div className="flex items-center justify-between">
+        <IconButton
+          Icon={isOpen ? DownIcon : RightIcon}
           onClick={() => setIsOpen(!isOpen)}
-        >
-          Coisas
-        </button>
-        <div className="flex-1 h-[1.5px] bg-gray-200" />
-        <p className={`${!isOpen && "!visible"} font-bold rounded-lg text-center invisible w-6 h-6 bg-gray-200 text-gray-900`}>{num}</p>
+        />
+        <div className="flex-1 flex flex-col">
+          <div className="flex">
+            <p className="flex-1">Coisas <span className="text-neutral-500">{taskNum}</span> </p>
+            <IconButton Icon={EllipsisIcon} />
+          </div>
+          <hr className="w-full bg-neutral-600 mt-1" />
+        </div>
       </div>
+
       <div className={`${isOpen && "!visible"} invisible`}>{children}</div>
     </div>
   );

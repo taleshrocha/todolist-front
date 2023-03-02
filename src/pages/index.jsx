@@ -25,6 +25,7 @@ export default function Home() {
         "
       >
         <Header />
+
         <div className="w-full text-neutral-200 px-12 pt-8 space-y-4">
           <div className="flex items-center justify-start text-xl">
             <p className="font-bold flex-1">Inbox</p>
@@ -32,20 +33,24 @@ export default function Home() {
             <IconButton Icon={EllipsisIcon} />
           </div>
 
+          {/*Add a Task Button*/}
           <button className="group flex items-center justify-start space-x-4">
-            <div className="flex items-center justify-center rounded-full w-4 h-4
-              text-red-600 group-hover:bg-red-600 group-hover:text-white">
+            <div
+              className="flex items-center justify-center rounded-full w-4 h-4
+              text-red-600 group-hover:bg-red-600 group-hover:text-white"
+            >
               <p className="text-2xl font-light">+</p>
             </div>
             <p className="text-gray-200 group-hover:text-red-600">Add a Task</p>
           </button>
-          <div className="rounded-md h-max w-full">
-            <Folder>
-              <Task />
-              <Task />
-              <Task />
-            </Folder>
-          </div>
+        </div>
+
+        <div className="w-full text-neutral-200 px-8 mt-12">
+          <Folder>
+            <Task />
+            <Task />
+            <Task />
+          </Folder>
         </div>
       </main>
     </>
