@@ -11,14 +11,14 @@ export default function Header() {
   return (
     <nav className="flex text-white items-center justify-between h-10 bg-neutral-800 w-screen px-4">
       <div className="flex items-center justify-between text-2xl space-x-2">
-        <MenuIcon />
-        <HomeIcon />
-        <SearchIcon />
+        <HeaderButton icon={<MenuIcon />} />
+        <HeaderButton icon={<HomeIcon />} />
+        <HeaderButton icon={<SearchIcon />} />
       </div>
       <div className="flex items-center justify-between text-2xl space-x-4">
-        <PlusIcon />
-        <QuestionIcon />
-        <BellIcon />
+        <HeaderButton icon={<PlusIcon />} />
+        <HeaderButton icon={<QuestionIcon />} />
+        <HeaderButton icon={<BellIcon />} />
         <img
           className="rounded-full h-8"
           src="https://github.com/taleshrocha.png"
@@ -26,5 +26,11 @@ export default function Header() {
         />
       </div>
     </nav>
+  );
+}
+
+function HeaderButton({ icon }) {
+  return (
+    <button className="p-1 hover:bg-neutral-600 rounded-md">{icon}</button>
   );
 }
