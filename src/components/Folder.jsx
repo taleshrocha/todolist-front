@@ -12,21 +12,26 @@ export default function Folder({ children }) {
 
   return (
     <div className="flex flex-col">
-      <div className="flex items-center justify-between">
+      {/*Show tasks button*/}
+      <div className="flex items-start justify-between">
         <IconButton
           Icon={isOpen ? DownIcon : RightIcon}
           onClick={() => setIsOpen(!isOpen)}
         />
+
         <div className="flex-1 flex flex-col">
           <div className="flex">
-            <p className="flex-1">Coisas <span className="text-neutral-500">{taskNum}</span> </p>
+            {/*Folder name*/}
+            <p className="flex-1">
+              Coisas <span className="text-neutral-500">{taskNum}</span>{" "}
+            </p>
             <IconButton Icon={EllipsisIcon} />
           </div>
           <hr className="w-full bg-neutral-600 mt-1" />
+
+          <div className={`${isOpen && "!visible"} invisible`}>{children}</div>
         </div>
       </div>
-
-      <div className={`${isOpen && "!visible"} invisible`}>{children}</div>
     </div>
   );
 }
