@@ -9,7 +9,8 @@ import {
 } from "react-icons/ai";
 import { BiMessage as MessageIcon } from "react-icons/bi";
 
-export default function Home() {
+export default function Home({data}) {
+  console.log(data)
   return (
     <>
       <Head>
@@ -33,7 +34,7 @@ export default function Home() {
             <IconButton Icon={EllipsisIcon} />
           </div>
 
-          {/*Add a Task Button*/}
+          {/*"Add a Task" Button*/}
           <button className="group flex items-center justify-start space-x-4">
             <div
               className="flex items-center justify-center rounded-full w-4 h-4
@@ -55,4 +56,13 @@ export default function Home() {
       </main>
     </>
   );
+}
+
+export async function getServerSideProps(context) {
+  const res = await fetch("http://localhost:8080/task")
+  const data = await res.json()
+
+  return {
+    props: {data}, // will be passed to the page component as props
+  }
 }
