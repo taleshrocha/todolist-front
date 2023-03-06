@@ -11,7 +11,7 @@ export default function Menu() {
           fixed left-0 bg-neutral-800 w-32 min-h-screen h-full
           text-neutral-200 
           transition-all
-          -translate-x-28 ${isMenuOpen && "translate-x-0"}
+          invisible -translate-x-28 ${isMenuOpen && "translate-x-0 !visible"}
         `}
     >
       <MenuLink href="/">

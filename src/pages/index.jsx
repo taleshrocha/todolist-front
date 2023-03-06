@@ -1,5 +1,4 @@
 import Folder from "@/components/Folder";
-import Header from "@/components/Header";
 import Task from "@/components/Task";
 import Head from "next/head";
 import IconButton from "@/components/IconButton";
@@ -9,7 +8,6 @@ import {
 } from "react-icons/ai";
 import { BiMessage as MessageIcon } from "react-icons/bi";
 import Menu from "@/components/Menu";
-import { TaskProvider } from "@/contexts/TaskContext";
 
 export default function Home(/*{tasks}*/) {
   //console.log(tasks)
@@ -23,16 +21,15 @@ export default function Home(/*{tasks}*/) {
       </Head>
       <main
         className="
-          flex flex-col items-center 
+          flex 
           bg-neutral-900 w-full min-h-screen h-full
         "
       >
-        <TaskProvider>
-          <Header />
           <Menu />
-        </TaskProvider>
 
-        <div className="w-full text-neutral-200 px-12 pt-8 space-y-4">
+        <div className="flex flex-col w-full">
+          
+        <div className="text-neutral-200 px-12 pt-8 space-y-4">
           <div className="flex items-center justify-start text-xl">
             <p className="font-bold flex-1">Inbox</p>
             <IconButton Icon={MessageIcon} />
@@ -61,7 +58,9 @@ export default function Home(/*{tasks}*/) {
               />
             ))}
           */}
+            <Task task={{content: "Blah", isDone: false}}/>
           </Folder>
+        </div>
         </div>
       </main>
     </>
