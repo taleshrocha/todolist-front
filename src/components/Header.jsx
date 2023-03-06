@@ -1,3 +1,5 @@
+import { TaskContext } from "@/contexts/TaskContext";
+import { useContext } from "react";
 import {
   AiOutlineHome as HomeIcon,
   AiOutlineMenu as MenuIcon,
@@ -9,10 +11,15 @@ import {
 import IconButton from "./IconButton";
 
 export default function Header() {
+  const {isMenuOpen, setIsMenuOpen} = useContext(TaskContext)
+
   return (
     <nav className="flex text-white items-center justify-between h-10 bg-neutral-800 w-screen px-4">
       <div className="flex items-center justify-between text-2xl space-x-2">
-        <IconButton Icon={MenuIcon} />
+        <IconButton 
+          Icon={MenuIcon} 
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+        />
         <IconButton Icon={HomeIcon} />
         <IconButton Icon={SearchIcon} />
       </div>
