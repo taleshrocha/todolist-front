@@ -8,14 +8,12 @@ import {
   AiOutlinePlus as PlusIcon,
 } from "react-icons/ai";
 import { BiMessage as MessageIcon } from "react-icons/bi";
-import Menu from "@/components/Menu";
 
-export default function Home({tasks}) {
-  console.log(tasks)
+export default function Today() {
   return (
     <>
       <Head>
-        <title>Todolist</title>
+        <title>Todolist | Today</title>
         <meta name="description" content="Todolist" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
@@ -27,7 +25,6 @@ export default function Home({tasks}) {
         "
       >
         <Header />
-        <Menu />
 
         <div className="w-full text-neutral-200 px-12 pt-8 space-y-4">
           <div className="flex items-center justify-start text-xl">
@@ -50,24 +47,9 @@ export default function Home({tasks}) {
 
         <div className="w-full text-neutral-200 px-8 mt-12">
           <Folder>
-            {tasks.map(task => (
-              <Task 
-                key={task.id}
-                task={task}
-              />
-            ))}
           </Folder>
         </div>
       </main>
     </>
   );
-}
-
-export async function getServerSideProps() {
-  const res = await fetch("http://localhost:8080/task")
-  const tasks = await res.json()
-
-  return {
-    props: {tasks}, // will be passed to the page component as props
-  }
 }

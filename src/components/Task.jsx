@@ -1,8 +1,35 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { BsTrash as TrashIcon } from "react-icons/bs";
 
-export default function Task() {
-  const [isDone, setIsDone] = useState(false);
+export default function Task({task}) {
+  const [isDone, setIsDone] = useState(task.isDone);
+
+  //useEffect(() => {
+
+  //  return () => {
+  //    console.log("END AHHHHH")
+  //    fetch(`http://localhost:8080/task/${task.id}`, {
+  //      method: "PUT",
+  //      mode: "cors",
+  //      cache: "no-cache",
+  //      credentials: "same-origin",
+  //      headers: {
+  //        "Content-Type": "application/json",
+  //      },
+  //      redirect: "follow",
+  //      referrerPolicy: "no-referrer",
+  //      body: JSON.stringify({ 
+  //        content: task.content ,
+  //        isDone: isDone
+  //      }),
+  //    })
+  //      //.then((response) => response.json())
+  //      //.then((data) => {
+  //      //  console.log(data)
+  //      //})
+  //  }
+  //}, [])
+
   return (
     <div className="group flex flex-col items-start justify-center w-full mt-3 cursor-pointer">
       {/*Checkbox and task name*/}
@@ -22,7 +49,7 @@ export default function Task() {
             isDone && "line-through !text-gray-400"
           } flex-1 text-white font-semibold`}
         >
-          Lavar gato
+          {task.content}
         </p>
         <TrashIcon className="invisible group-hover:visible"/>
       </div>
