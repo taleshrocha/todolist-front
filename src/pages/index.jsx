@@ -9,11 +9,12 @@ import {
 import { BiMessage as MessageIcon } from "react-icons/bi";
 import Menu from "@/components/Menu";
 import { TaskContext } from "@/contexts/TaskContext";
-import { useContext, useRef } from "react";
+import { useContext, useRef, useState } from "react";
 
 export default function Home({ tasks }) {
   const { isMenuOpen } = useContext(TaskContext);
   const inputRef = useRef(null);
+  const [isTaskPostOpen, setIsTaskPostOpen] = useState(false);
 
   function postTask(task) {
     fetch(`http://localhost:8080/task`, {
@@ -41,15 +42,13 @@ export default function Home({ tasks }) {
 
       <main
         className="
-          flex
+          flex justify-center
           bg-neutral-900 w-full h-screen
         "
       >
-        <Menu />
-
         <div
           className={`
-               w-full flex flex-col transition-all duration-500 mt-10 ${
+                w-2/3 flex flex-col transition-all duration-500 mt-10 ${
                  isMenuOpen && "!ml-72"
                }
               `}
@@ -61,44 +60,46 @@ export default function Home({ tasks }) {
               <IconButton Icon={EllipsisIcon} />
             </div>
 
-            {/*"Add a Task" Button*/}
-            <button
-              className="group flex items-center justify-start space-x-4"
-              onClick={() =>
-                postTask({ content: "Study classes", idDone: false })
-              }
-            >
-              <div
-                className="
+            {isTaskPostOpen ? (
+              <div className="w-full border border-white">
+                {/*Add task info*/}
+                <input
+                  className="w-full outline-none bg-transparent"
+                  ref={inputRef}
+                />
+                <div className="flex w-full justify-end">
+                  <button
+                    onClick={() => setIsTaskPostOpen(false)}
+                  >Cancel</button>
+                  <button
+                    onClick={() =>
+                      postTask({ content: inputRef.current.value })
+                    }
+                  >
+                    Add the task
+                  </button>
+                </div>
+              </div>
+            ) : (
+              <button
+                className="group flex items-center justify-start space-x-4"
+                onClick={() => setIsTaskPostOpen(true)}
+              >
+                {/*"Add a Task" Button*/}
+                <div
+                  className="
                   flex items-center justify-center rounded-full w-4 h-4
                   text-red-600 group-hover:bg-red-600 group-hover:text-white
                 "
-              >
-                {/*Add a taks*/}
-                <p className="text-2xl font-light">+</p>
-              </div>
-              <p className="text-gray-200 group-hover:text-red-600">
-                Add a Task
-              </p>
-            </button>
-
-            {/*Add task info*/}
-            <div className="w-full border border-white">
-              <input
-                className="w-full outline-none bg-transparent"
-                ref={inputRef}
-              />
-              <div className="flex w-full justify-end">
-                <button>Cancel</button>
-                <button
-                  onClick={() =>
-                    postTask({ content: inputRef.current.value})
-                  }
                 >
-                  Add the task
-                </button>
-              </div>
-            </div>
+                  {/*Add a taks*/}
+                  <p className="text-2xl font-light">+</p>
+                </div>
+                <p className="text-gray-200 group-hover:text-red-600">
+                  Add a Task
+                </p>
+              </button>
+            )}
           </div>
 
           <div className="w-full text-neutral-200 px-8 mt-12">
