@@ -13,7 +13,7 @@ import { useContext, useRef, useState } from "react";
 
 export default function Home({ tasks }) {
   const { isMenuOpen } = useContext(TaskContext);
-  const inputRef = useRef(null);
+  const [inputText, setInputText] = useState("")
   const [isTaskPostOpen, setIsTaskPostOpen] = useState(false);
 
   function postTask(task) {
@@ -43,7 +43,7 @@ export default function Home({ tasks }) {
       <main
         className="
           flex justify-center
-          bg-neutral-900 w-full h-screen
+          bg-neutral-900 w-full min-h-screen h-full
         "
       >
         <div
@@ -61,19 +61,32 @@ export default function Home({ tasks }) {
             </div>
 
             {isTaskPostOpen ? (
-              <div className="w-full border border-white">
+              <div className="w-full border border-neutral-200 rounded-xl p-2">
                 {/*Add task info*/}
                 <input
+                  placeholder="The name of the task"
                   className="w-full outline-none bg-transparent"
-                  ref={inputRef}
+                  value={inputText}
+                  onChange={(e) => setInputText(e.target.value)}
                 />
-                <div className="flex w-full justify-end">
+                <hr className="w-full bg-neutral-600 my-2" />
+
+                {/*Buttons*/}
+                <div className="flex w-full justify-end space-x-2">
                   <button
+                    className="font-semibold text-sm rounded-lg bg-neutral-800 p-2 hover:bg-neutral-700"
                     onClick={() => setIsTaskPostOpen(false)}
-                  >Cancel</button>
+                  >
+                    Cancel
+                  </button>
                   <button
+                    className="font-semibold text-sm rounded-lg bg-red-800 p-2 hover:bg-red-700 disabled:!bg-red-800 disabled:opacity-75 disabled:cursor-not-allowed"
+                    disabled={inputText == ""}
                     onClick={() =>
-                      postTask({ content: inputRef.current.value })
+                      {
+                        postTask({ content: inputText})
+                        setInputText("")
+                      }
                     }
                   >
                     Add the task
