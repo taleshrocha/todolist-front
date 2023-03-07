@@ -18,7 +18,8 @@ export default function Header() {
       <div className="flex items-center justify-between text-2xl space-x-2">
         <IconButton 
           Icon={MenuIcon} 
-          onClick={() => setIsMenuOpen(!isMenuOpen)}
+          onClick={() => setIsMenuOpen(!isMenuOpen)
+          }
         />
         <IconButton Icon={HomeIcon} />
         <IconButton Icon={SearchIcon} />

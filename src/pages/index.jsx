@@ -8,9 +8,12 @@ import {
 } from "react-icons/ai";
 import { BiMessage as MessageIcon } from "react-icons/bi";
 import Menu from "@/components/Menu";
+import { TaskContext } from "@/contexts/TaskContext";
+import { useContext } from "react";
 
 export default function Home(/*{tasks}*/) {
   //console.log(tasks)
+  const { isMenuOpen } = useContext(TaskContext)
   return (
     <>
       <Head>
@@ -21,36 +24,39 @@ export default function Home(/*{tasks}*/) {
       </Head>
       <main
         className="
-          flex 
+        flex
           bg-neutral-900 w-full min-h-screen h-full
         "
       >
-          <Menu />
 
-        <div className="flex flex-col w-full">
-          
-        <div className="text-neutral-200 px-12 pt-8 space-y-4">
-          <div className="flex items-center justify-start text-xl">
-            <p className="font-bold flex-1">Inbox</p>
-            <IconButton Icon={MessageIcon} />
-            <IconButton Icon={EllipsisIcon} />
+        <Menu/>
+        <div className={`
+               w-full flex flex-col transition-all duration-500 ${isMenuOpen && "!ml-72"}
+              `}
+        >
+
+          <div className="text-neutral-200 px-12 pt-8 space-y-4">
+            <div className="flex items-center justify-start text-xl">
+              <p className="font-bold flex-1">Inbox</p>
+              <IconButton Icon={MessageIcon} />
+              <IconButton Icon={EllipsisIcon} />
+            </div>
+
+            {/*"Add a Task" Button*/}
+            <button className="group flex items-center justify-start space-x-4">
+              <div
+                className="flex items-center justify-center rounded-full w-4 h-4
+              text-red-600 group-hover:bg-red-600 group-hover:text-white"
+              >
+                <p className="text-2xl font-light">+</p>
+              </div>
+              <p className="text-gray-200 group-hover:text-red-600">Add a Task</p>
+            </button>
           </div>
 
-          {/*"Add a Task" Button*/}
-          <button className="group flex items-center justify-start space-x-4">
-            <div
-              className="flex items-center justify-center rounded-full w-4 h-4
-              text-red-600 group-hover:bg-red-600 group-hover:text-white"
-            >
-              <p className="text-2xl font-light">+</p>
-            </div>
-            <p className="text-gray-200 group-hover:text-red-600">Add a Task</p>
-          </button>
-        </div>
-
-        <div className="w-full text-neutral-200 px-8 mt-12">
-          <Folder>
-            {/*
+          <div className="w-full text-neutral-200 px-8 mt-12">
+            <Folder>
+              {/*
             {tasks.map(task => (
               <Task 
                 key={task.id}
@@ -58,9 +64,9 @@ export default function Home(/*{tasks}*/) {
               />
             ))}
           */}
-            <Task task={{content: "Blah", isDone: false}}/>
-          </Folder>
-        </div>
+              <Task task={{ content: "Blah", isDone: false }} />
+            </Folder>
+          </div>
         </div>
       </main>
     </>

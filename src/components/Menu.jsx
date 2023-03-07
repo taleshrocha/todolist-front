@@ -8,10 +8,10 @@ export default function Menu() {
   return (
     <div className={`
           flex flex-col items-center justify-start
-          fixed left-0 bg-neutral-800 w-32 min-h-screen h-full
+          fixed bg-neutral-800 w-72 h-screen
           text-neutral-200 
-          transition-all
-          invisible -translate-x-28 ${isMenuOpen && "translate-x-0 !visible"}
+          transition-all duration-500
+          -translate-x-full ${isMenuOpen && "!translate-x-0 "}
         `}
     >
       <MenuLink href="/">
