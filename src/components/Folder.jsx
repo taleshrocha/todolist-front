@@ -4,6 +4,7 @@ import {
   AiOutlineRight as RightIcon,
   AiOutlineDown as DownIcon,
 } from "react-icons/ai";
+import AddTask from "./AddTask";
 import IconButton from "./IconButton";
 
 export default function Folder({ children }) {
@@ -37,6 +38,9 @@ export default function Folder({ children }) {
         <div className={`${isOpen && "!flex !flex-col"} hidden`}>
           {children}
         </div>
+        <AddTask 
+          className={`${isOpen && "!flex"} hidden mt-3`}
+        />
 
       </div>
     </div>
