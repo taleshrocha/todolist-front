@@ -7,7 +7,7 @@ export default function Menu() {
 
   return (
     <div className={`
-          flex flex-col items-center justify-start
+          flex flex-col items-center justify-start mt-10
           fixed bg-neutral-800 w-72 h-screen
           text-neutral-200 
           transition-all duration-500

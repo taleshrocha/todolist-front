@@ -14,7 +14,7 @@ export default function Header() {
   const {isMenuOpen, setIsMenuOpen} = useContext(TaskContext)
 
   return (
-    <nav className="flex text-white items-center justify-between h-10 bg-neutral-800 w-screen px-4">
+    <nav className="flex fixed text-white items-center justify-between h-10 bg-neutral-800 w-screen px-4 shadow-xl z-50">
       <div className="flex items-center justify-between text-2xl space-x-2">
         <IconButton 
           Icon={MenuIcon} 

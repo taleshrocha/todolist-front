@@ -8,8 +8,9 @@ import {
 } from "react-icons/ai";
 import { BiMessage as MessageIcon } from "react-icons/bi";
 import Menu from "@/components/Menu";
-import { TaskContext } from "@/contexts/TaskContext";
+import { TaskContext, TaskProvider } from "@/contexts/TaskContext";
 import { useContext } from "react";
+import Header from "@/components/Header";
 
 export default function Home(/*{tasks}*/) {
   //console.log(tasks)
@@ -25,13 +26,13 @@ export default function Home(/*{tasks}*/) {
       <main
         className="
         flex
-          bg-neutral-900 w-full min-h-screen h-full
+          bg-neutral-900 w-full h-screen
         "
       >
-
         <Menu/>
+
         <div className={`
-               w-full flex flex-col transition-all duration-500 ${isMenuOpen && "!ml-72"}
+               w-full flex flex-col transition-all duration-500 mt-10 ${isMenuOpen && "!ml-72"}
               `}
         >
 
