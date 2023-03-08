@@ -1,9 +1,13 @@
 import { TaskContext } from "@/contexts/TaskContext";
 import Link from "next/link";
 import { useContext } from "react";
+import {
+  AiOutlineInbox as InboxIcon,
+  AiOutlineCalendar as CalendarIcon
+} from "react-icons/ai"
 
 export default function Menu() {
-  const {isMenuOpen} = useContext(TaskContext)
+  const { isMenuOpen } = useContext(TaskContext)
 
   return (
     <div className={`
@@ -16,27 +20,33 @@ export default function Menu() {
         `}
     >
       <MenuLink href="/">
-        Index
+        <InboxIcon className="text-xl"/>
+        <p>
+        Inbox
+        </p>
       </MenuLink>
 
       <MenuLink href="/today">
+        <CalendarIcon className="text-xl"/>
+        <p>
         Today
+        </p>
       </MenuLink>
     </div>
   )
 }
 
-function MenuLink({children, ...props}) {
+function MenuLink({ children, ...props }) {
   return (
-      <Link 
+    <Link
       {...props}
       className="flex w-full hover:bg-neutral-700 items-center justify-start 
       h-10 rounded-md"
     >
-      <p className="ml-2">
-      {children}
+      <p className="flex space-x-2 justify-center items-center ml-2">
+        {children}
       </p>
-      </Link>
+    </Link>
 
   )
 }

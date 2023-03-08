@@ -37,8 +37,8 @@ export default function Task({task}) {
         <input
           className="
           w-5 h-5
-          rounded-md bg-transparent text-gray-400
-          border-2 border-gray-400 focus:ring-0 cursor-pointer
+          rounded-md bg-transparent text-neutral-600
+          border-2 border-neutral-600 focus:ring-0 cursor-pointer
         "
           type="checkbox"
           checked={isDone}
@@ -46,8 +46,8 @@ export default function Task({task}) {
         />
         <p
           className={`${
-            isDone && "line-through !text-gray-400"
-          } flex-1 text-white font-semibold`}
+            isDone && "line-through !text-neutral-600"
+          } flex-1 text-neutral-200 font-semibold`}
         >
           {task.content}
         </p>

@@ -26,7 +26,7 @@ export default function Home({ data }) {
       <main
         className="
           flex justify-center
-          bg-neutral-900 w-full min-h-screen h-full
+          bg-neutral-900 w-full min-h-screen h-full pb-20
         "
       >
         <div
@@ -45,7 +45,7 @@ export default function Home({ data }) {
           </div>
 
           {/*Folders*/}
-          <div className="w-full text-neutral-200 px-8 mt-12 space-y-4">
+          <div className="w-full text-neutral-200 px-8 space-y-4">
             {/*Root*/}
             <Folder isRoot={true}>
               <Task task={{ content: "Root", isDone: false }} />

@@ -17,14 +17,14 @@ export default function Folder({ children, isRoot }) {
 
       {/*Down/RIght buttom*/}
       <IconButton
-        className={`sticky top-10 ${isRoot && "hidden"}`}
+        className={`sticky top-10 ${isRoot && "invisible"}`}
         Icon={isOpen ? DownIcon : RightIcon}
         onClick={() => setIsOpen(!isOpen)}
       />
 
       <div className="flex-1 flex flex-col">
         {/*Folder name*/}
-        <div className={`flex flex-col sticky top-10 bg-neutral-900 ${isRoot && "hidden"}`}>
+        <div className={`flex flex-col sticky top-10 bg-neutral-900 ${isRoot && "invisible"}`}>
           <div className="flex">
             <p className="flex-1">
               Coisas <span className="text-neutral-500">{taskNum}</span>{" "}
