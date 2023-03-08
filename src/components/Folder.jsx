@@ -7,7 +7,7 @@ import {
 import AddTask from "./AddTask";
 import IconButton from "./IconButton";
 
-export default function Folder({ children }) {
+export default function Folder({ children, isRoot }) {
   const [isOpen, setIsOpen] = useState(false);
   const taskNum = Children.count(children);
 
@@ -17,14 +17,14 @@ export default function Folder({ children }) {
 
       {/*Down/RIght buttom*/}
       <IconButton
-        className="sticky top-10"
+        className={`sticky top-10 ${isRoot && "hidden"}`}
         Icon={isOpen ? DownIcon : RightIcon}
         onClick={() => setIsOpen(!isOpen)}
       />
 
       <div className="flex-1 flex flex-col">
         {/*Folder name*/}
-        <div className=" flex flex-col sticky top-10 bg-neutral-900">
+        <div className={`flex flex-col sticky top-10 bg-neutral-900 ${isRoot && "hidden"}`}>
           <div className="flex">
             <p className="flex-1">
               Coisas <span className="text-neutral-500">{taskNum}</span>{" "}
@@ -35,11 +35,11 @@ export default function Folder({ children }) {
         </div>
 
         {/*All Tasks*/}
-        <div className={`${isOpen && "!flex !flex-col"} hidden`}>
+        <div className={`${(isOpen || isRoot) && "!flex !flex-col"} hidden`}>
           {children}
         </div>
         <AddTask 
-          className={`${isOpen && "!flex"} hidden mt-3`}
+          className={`${(isOpen || isRoot) && "!flex"} hidden mt-3`}
         />
 
       </div>

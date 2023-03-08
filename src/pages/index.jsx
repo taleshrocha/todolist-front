@@ -44,9 +44,14 @@ export default function Home({ data }) {
             </div>
           </div>
 
-          {/*Folder*/}
-          <div className="w-full text-neutral-200 px-8 mt-12">
-            <Folder>
+          {/*Folders*/}
+          <div className="w-full text-neutral-200 px-8 mt-12 space-y-4">
+            {/*Root*/}
+            <Folder isRoot={true}>
+              <Task task={{ content: "Root", isDone: false }} />
+            </Folder>
+
+            <Folder isRoot={false}>
               {tasks.map((task) => (
                 <Task key={task.id} task={task} />
               ))}
