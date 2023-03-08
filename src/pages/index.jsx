@@ -5,11 +5,14 @@ import IconButton from "@/components/IconButton";
 import { AiOutlineEllipsis as EllipsisIcon } from "react-icons/ai";
 import { BiMessage as MessageIcon } from "react-icons/bi";
 import { TaskContext } from "@/contexts/TaskContext";
-import { useContext } from "react";
-import AddTask from "@/components/AddTask";
+import { useContext, useEffect } from "react";
 
-export default function Home({ tasks }) {
-  const { isMenuOpen } = useContext(TaskContext);
+export default function Home({ data }) {
+  const { isMenuOpen, tasks, setTasks } = useContext(TaskContext);
+
+  useEffect(() => {
+    setTasks(tasks.concat(data));
+  }, []);
 
   return (
     <>
@@ -26,7 +29,6 @@ export default function Home({ tasks }) {
           bg-neutral-900 w-full min-h-screen h-full
         "
       >
-
         <div
           className={`
                 w-2/3 flex flex-col transition-all duration-500 
@@ -57,15 +59,13 @@ export default function Home({ tasks }) {
 }
 
 export async function getServerSideProps() {
-  var tasks = await fetch("http://localhost:8080/task")
+  var data = await fetch("http://localhost:8080/task")
     .then((response) => response.json())
     .catch((err) => {
       console.log(err);
     });
 
-  if (!tasks) tasks = [{ content: "Blah", isDone: false, id: 1 }];
-
   return {
-    props: { tasks }, // will be passed to the page component as props
+    props: { data }, // will be passed to the page component as props
   };
 }

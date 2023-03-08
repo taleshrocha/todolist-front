@@ -1,8 +1,10 @@
-import { useState } from "react";
+import { TaskContext } from "@/contexts/TaskContext";
+import { useContext, useState } from "react";
 
 export default function AddTask({className}) {
   const [inputText, setInputText] = useState("");
   const [isTaskPostOpen, setIsTaskPostOpen] = useState(false);
+  const { tasks, setTasks } = useContext(TaskContext);
 
   function postTask(task) {
     fetch(`http://localhost:8080/task`, {
@@ -16,8 +18,9 @@ export default function AddTask({className}) {
       redirect: "follow",
       referrerPolicy: "no-referrer",
       body: JSON.stringify(task),
-    }).then((response) => console.log("Added task: ", response));
-    //.then(tasks.push(task));
+    }).then((response) => console.log("Added task: ", response))
+    .catch(err => console.log(err))
+    .then(() => setTasks(tasks.concat(task)))
   }
   return (
     <div className={`text-white flex justify-start items-center ${className}`}>
