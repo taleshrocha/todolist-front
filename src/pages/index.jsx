@@ -10,10 +10,12 @@ import { useContext, useEffect } from "react";
 export default function Home({ data }) {
   const { isMenuOpen, tasks, setTasks } = useContext(TaskContext);
 
+  // TODO: Fix this error. Duplicates
   useEffect(() => {
-    setTasks(tasks.concat(data));
+    setTasks(data);
   }, []);
 
+  var root = tasks[0]
   return (
     <>
       <Head>
@@ -44,19 +46,10 @@ export default function Home({ data }) {
             </div>
           </div>
 
-          {/*Folders*/}
-          <div className="w-full text-neutral-200 px-8 space-y-4">
-            {/*Root*/}
-            <Folder isRoot={true}>
-              <Task task={{ content: "Root", isDone: false }} />
-            </Folder>
+          <Folder task={root}>
+          </Folder>
 
-            <Folder isRoot={false}>
-              {tasks.map((task) => (
-                <Task key={task.id} task={task} />
-              ))}
-            </Folder>
-          </div>
+
         </div>
       </main>
     </>
