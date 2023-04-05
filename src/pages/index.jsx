@@ -11,11 +11,12 @@ export default function Home({ data }) {
   const { isMenuOpen, tasks, setTasks } = useContext(TaskContext);
 
   // TODO: Fix this error. Duplicates
-  useEffect(() => {
-    setTasks(data);
-  }, []);
+  //useEffect(() => {
+  //  setTasks(data);
+  //}, []);
 
-  var root = tasks[0]
+  //var root = tasks[0]
+  console.log(data);
   return (
     <>
       <Head>
@@ -46,10 +47,20 @@ export default function Home({ data }) {
             </div>
           </div>
 
-          <Folder task={root}>
-          </Folder>
-
-
+          {data.map((folder) => (
+            <Folder 
+              key={folder.id}
+              folderId={folder.id}
+              name={folder.name}
+              tasksNum={folder.tasks.length}
+            >
+              {folder.tasks.map((task) => (
+                <Task key={task.id}
+                  content={task.content}
+                  _isDone={task.isDone} />
+              ))}
+            </Folder>
+          ))}
         </div>
       </main>
     </>
@@ -57,7 +68,7 @@ export default function Home({ data }) {
 }
 
 export async function getServerSideProps() {
-  var data = await fetch("http://localhost:8080/task")
+  var data = await fetch("http://localhost:8080/folder")
     .then((response) => response.json())
     .catch((err) => {
       console.log(err);

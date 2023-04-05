@@ -1,14 +1,12 @@
-import { TaskContext } from "@/contexts/TaskContext";
-import { useContext, useState } from "react";
+import { useState } from "react";
 
-export default function AddTask({className}) {
+export default function AddTask({ className, folderId }) {
   const [inputText, setInputText] = useState("");
   const [isTaskPostOpen, setIsTaskPostOpen] = useState(false);
-  const { tasks, setTasks } = useContext(TaskContext);
 
-  function postTask(task) {
-    fetch(`http://localhost:8080/task`, {
-      method: "POST",
+  function putTask(task) {
+    fetch(`http://localhost:8080/folder/${folderId}/task`, {
+      method: "PUT",
       mode: "cors",
       cache: "no-cache",
       credentials: "same-origin",
@@ -18,10 +16,11 @@ export default function AddTask({className}) {
       redirect: "follow",
       referrerPolicy: "no-referrer",
       body: JSON.stringify(task),
-    }).then((response) => console.log("Added task: ", response))
-    .catch(err => console.log(err))
-    .then(() => setTasks(tasks.concat(task)))
+    })
+      .then((response) => console.log("Added task: ", response))
+      .catch((err) => console.log(err))
   }
+
   return (
     <div className={`text-white flex justify-start items-center ${className}`}>
       {isTaskPostOpen ? (
@@ -47,7 +46,7 @@ export default function AddTask({className}) {
               className="font-semibold text-sm rounded-lg bg-red-800 p-2 hover:bg-red-700 disabled:!bg-red-800 disabled:opacity-75 disabled:cursor-not-allowed"
               disabled={inputText == ""}
               onClick={() => {
-                postTask({ content: inputText });
+                putTask({ content: inputText });
                 setInputText("");
               }}
             >
@@ -63,9 +62,9 @@ export default function AddTask({className}) {
           {/*"Add a Task" Button*/}
           <div
             className="
-                  flex items-center justify-center rounded-full w-4 h-4
-                  text-red-600 group-hover:bg-red-600 group-hover:text-white
-                "
+              flex items-center justify-center rounded-full w-4 h-4
+              text-red-600 group-hover:bg-red-600 group-hover:text-white
+            "
           >
             {/*Add a taks*/}
             <p className="text-2xl font-light">+</p>

@@ -1,34 +1,8 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { BsTrash as TrashIcon } from "react-icons/bs";
 
-export default function Task({task}) {
-  const [isDone, setIsDone] = useState(task.isDone);
-
-  //useEffect(() => {
-
-  //  return () => {
-  //    console.log("END AHHHHH")
-  //    fetch(`http://localhost:8080/task/${task.id}`, {
-  //      method: "PUT",
-  //      mode: "cors",
-  //      cache: "no-cache",
-  //      credentials: "same-origin",
-  //      headers: {
-  //        "Content-Type": "application/json",
-  //      },
-  //      redirect: "follow",
-  //      referrerPolicy: "no-referrer",
-  //      body: JSON.stringify({ 
-  //        content: task.content ,
-  //        isDone: isDone
-  //      }),
-  //    })
-  //      //.then((response) => response.json())
-  //      //.then((data) => {
-  //      //  console.log(data)
-  //      //})
-  //  }
-  //}, [])
+export default function Task({content, _isDone}) {
+  const [isDone, setIsDone] = useState(_isDone);
 
   return (
     <div className="group flex flex-col items-start justify-center w-full mt-3 cursor-pointer">
@@ -49,7 +23,7 @@ export default function Task({task}) {
             isDone && "line-through !text-neutral-600"
           } flex-1 text-neutral-200 font-semibold`}
         >
-          {task.content}
+          {content}
         </p>
         <TrashIcon className="invisible group-hover:visible"/>
       </div>
