@@ -22,29 +22,22 @@ export default function AddFolder() {
   }
 
   return (
-    <button
+    <div
       className={`group text-white flex justify-center items-center`}
-      onClick={() => setIsFolderPostOpen(true)}
     >
       {isFolderPostOpen ? (
-        <div className="w-full border border-neutral-200 rounded-xl p-2">
+        <div className="w-full p-2">
           {/*Add folder info*/}
           <input
             placeholder="The name of the folder"
-            className="w-full outline-none bg-transparent"
+            className="w-full outline-none bg-transparent 
+            border border-neutral-200 rounded-md p-2 font-bold mb-2"
             value={inputText}
             onChange={(e) => setInputText(e.target.value)}
           />
-          <hr className="w-full bg-neutral-600 my-2" />
 
           {/*Buttons*/}
-          <div className="flex w-full justify-end space-x-2">
-            <button
-              className="font-semibold text-sm rounded-lg bg-neutral-800 p-2 hover:bg-neutral-700"
-              onClick={() => setIsFolderPostOpen(false)}
-            >
-              Cancel
-            </button>
+          <div className="flex w-full justify-start space-x-2">
             <button
               className="font-semibold text-sm rounded-lg bg-red-800 p-2 hover:bg-red-700 disabled:!bg-red-800 disabled:opacity-75 disabled:cursor-not-allowed"
               disabled={inputText == ""}
@@ -55,17 +48,25 @@ export default function AddFolder() {
             >
               Add the folder
             </button>
+            <button
+              className="font-semibold text-sm rounded-lg bg-neutral-800 p-2 hover:bg-neutral-700"
+              onClick={() => setIsFolderPostOpen(false)}
+            >
+              Cancel
+            </button>
           </div>
         </div>
       ) : (
-        <div className="relative flex justify-center items-center opacity-0 
-              group-hover:opacity-100 w-full transition-all duration-300">
+        <button className="relative flex justify-center items-center opacity-0 
+              group-hover:opacity-100 w-full transition-all duration-300"
+            onClick={() => setIsFolderPostOpen(true)}
+          >
           <hr className="z-0 absolute w-full bg-red-600 h-[1px] border-0" />
           <p className="z-10 font-bold text-red-600 bg-neutral-900 px-2">
             Add a Folder
           </p>
-        </div>
+        </button>
       )}
-    </button>
+    </div>
   );
 }
