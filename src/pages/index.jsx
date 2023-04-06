@@ -6,6 +6,7 @@ import { AiOutlineEllipsis as EllipsisIcon } from "react-icons/ai";
 import { BiMessage as MessageIcon } from "react-icons/bi";
 import { TaskContext } from "@/contexts/TaskContext";
 import { useContext, useEffect } from "react";
+import AddFolder from "@/components/AddFolder";
 
 export default function Home({ data }) {
   const { isMenuOpen, tasks, setTasks } = useContext(TaskContext);
@@ -47,19 +48,25 @@ export default function Home({ data }) {
             </div>
           </div>
 
+          <AddFolder />
           {data.map((folder) => (
-            <Folder 
-              key={folder.id}
-              folderId={folder.id}
-              name={folder.name}
-              tasksNum={folder.tasks.length}
-            >
-              {folder.tasks.map((task) => (
-                <Task key={task.id}
-                  content={task.content}
-                  _isDone={task.isDone} />
-              ))}
-            </Folder>
+            <>
+              <Folder
+                key={folder.id}
+                folderId={folder.id}
+                name={folder.name}
+                tasksNum={folder.tasks.length}
+              >
+                {folder.tasks.map((task) => (
+                  <Task
+                    key={task.id}
+                    content={task.content}
+                    _isDone={task.isDone}
+                  />
+                ))}
+              </Folder>
+              <AddFolder />
+            </>
           ))}
         </div>
       </main>
