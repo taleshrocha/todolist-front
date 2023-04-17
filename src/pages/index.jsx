@@ -51,6 +51,8 @@ export default function Home({ data }) {
               {folder.tasks.map((task) => (
                 <Task
                   key={task.id}
+                  taskId={task.id}
+                  folderId={folder.id}
                   content={task.content}
                   _isDone={task.isDone}
                 />

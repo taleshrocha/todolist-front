@@ -1,8 +1,25 @@
 import { useState } from "react";
 import { BsTrash as TrashIcon } from "react-icons/bs";
 
-export default function Task({content, _isDone}) {
+export default function Task({content, _isDone, taskId, folderId}) {
   const [isDone, setIsDone] = useState(_isDone);
+
+  function deleteTask() {
+    fetch(`http://localhost:8080/folder/${folderId}/task/${taskId}`, {
+      method: "DELETE",
+      mode: "cors",
+      cache: "no-cache",
+      credentials: "same-origin",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      redirect: "follow",
+      referrerPolicy: "no-referrer",
+      //body: JSON.stringify(task),
+    })
+      .then((response) => console.log("DELETED task: ", response))
+      .catch((err) => console.log(err))
+  }
 
   return (
     <div className="group flex flex-col items-start justify-center w-full mt-3 cursor-pointer">
@@ -25,7 +42,11 @@ export default function Task({content, _isDone}) {
         >
           {content}
         </p>
+        <button
+          onClick={deleteTask}
+        >
         <TrashIcon className="invisible group-hover:visible"/>
+        </button>
       </div>
 
       <hr className="w-full bg-neutral-600 mt-3" />
